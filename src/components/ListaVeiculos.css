@@ -1,0 +1,40 @@
+.lista-veiculos-container {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.lista-veiculos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.veiculo-card {
+  background: #1e1e1e;
+  color: #e0e0e0;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(255,255,255,0.05);
+  width: 280px;
+  text-align: left;
+}
+
+.veiculo-card h3 {
+  margin-top: 0;
+}
+
+.veiculo-card button {
+  background-color: #00c6ff;
+  border: none;
+  padding: 10px;
+  color: #121212;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.veiculo-card button:hover {
+  background-color: #007bb5;
+  color: white;
+}

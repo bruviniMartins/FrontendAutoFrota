@@ -1,0 +1,42 @@
+.dashboard-container {
+  text-align: center;
+  padding: 50px 20px;
+  color: #e0e0e0;
+  background-color: #121212;
+}
+
+.dashboard-container h1 {
+  font-size: 36px;
+  color: #00c6ff;
+}
+
+.dashboard-container p {
+  font-size: 20px;
+  margin: 20px 0;
+  color: #aaa;
+}
+
+.dashboard-actions {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+.dashboard-card {
+  background: #1e1e1e;
+  border: 2px solid #00c6ff;
+  border-radius: 12px;
+  padding: 20px 30px;
+  text-decoration: none;
+  color: #00c6ff;
+  font-weight: bold;
+  font-size: 20px;
+  transition: all 0.3s ease;
+}
+
+.dashboard-card:hover {
+  background: #00c6ff;
+  color: #121212;
+}
