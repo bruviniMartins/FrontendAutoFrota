@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://localhost:3000' // Endereço onde seu backend Node.js (Express) está rodando
+  baseURL: process.env.REACT_APP_API_URL || 'https://backendautofrota.onrender.com' //Onde o backend está hospedado
 });
 
 export default api;
