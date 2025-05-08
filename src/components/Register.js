@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 import './LoginRegister.css';
 
 function Register() {
@@ -8,10 +9,13 @@ function Register() {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    await register(nome, email, senha);
-  };
+  e.preventDefault();
+  await register(nome, email, senha);
+  navigate('/dashboard'); // Vai direto pro dashboard após cadastro
+  };;
 
   return (
     <div className="form-container">

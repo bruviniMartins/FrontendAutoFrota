@@ -14,8 +14,14 @@ export function AuthProvider({ children }) {
   }
 
   async function register(nome, email, senha) {
-    await api.post('/auth/register', { nome, email, senha }); // <-- corrigido
-    alert('Cadastro realizado com sucesso!');
+    // Faz o cadastro
+    await api.post('/auth/register', { nome, email, senha });
+  
+    // Após sucesso, já faz login automático
+    const response = await api.post('/auth/login', { email, senha });
+    const tokenRecebido = response.data.token;
+    setToken(tokenRecebido);
+    localStorage.setItem('token', tokenRecebido);
   }
 
   function logout() {
