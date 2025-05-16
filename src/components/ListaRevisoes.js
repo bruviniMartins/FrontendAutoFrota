@@ -88,44 +88,58 @@ function ListaRevisoes() {
 
               {editarId === r.id && (
                 <tr className="linha-formulario">
-                  <td colSpan="5">
-                    <div className="formulario-inline">
-                      <input
-                        type="date"
-                        name="data_realizada"
-                        value={formData.data_realizada}
-                        onChange={handleInputChange}
-                      />
-                      <input
-                        type="number"
-                        name="km_realizado"
-                        placeholder="KM realizado"
-                        min="0"
-                        max="1000000"
-                        value={formData.km_realizado}
-                        onChange={handleInputChange}
-                      />
-                      <select
-                        name="tipo_realizado"
-                        value={formData.tipo_realizado}
-                        onChange={handleInputChange}
-                      >
-                        <option value="">Tipo de Revisão</option>
-                        <option value="Troca de óleo do motor">Troca de óleo do motor</option>
-                        <option value="Troca de filtro de ar">Troca de filtro de ar</option>
-                        <option value="Troca de filtro de combustível">Troca de filtro de combustível</option>
-                        <option value="Troca de correia dentada">Troca de correia dentada</option>
-                        <option value="Troca de velas de ignição">Troca de velas de ignição</option>
-                        <option value="Alinhamento de direção">Alinhamento de direção</option>
-                        <option value="Balanceamento de rodas">Balanceamento de rodas</option>
-                        <option value="Troca de pneus">Troca de pneus</option>
-                        <option value="Troca de pastilhas de freio">Troca de pastilhas de freio</option>
-                        <option value="Troca de fluido de freio">Troca de fluido de freio</option>
-                      </select>
-                      <button onClick={() => handleSalvar(r.id)} className="botao-salvar">Salvar</button>
-                    </div>
-                  </td>
-                </tr>
+  <td colSpan="5">
+    <div className="formulario-inline">
+      <input
+        type="date"
+        name="data_realizada"
+        value={formData.data_realizada}
+        onChange={handleInputChange}
+      />
+      <input
+        type="number"
+        name="km_realizado"
+        placeholder="KM realizado"
+        min="0"
+        max="1000000"
+        value={formData.km_realizado}
+        onChange={handleInputChange}
+      />
+      <select
+        name="tipo_realizado"
+        value={formData.tipo_realizado}
+        onChange={handleInputChange}
+      >
+        <option value="">Tipo de Revisão</option>
+        <option value="Troca de óleo do motor">Troca de óleo do motor</option>
+        <option value="Troca de filtro de ar">Troca de filtro de ar</option>
+        <option value="Troca de filtro de combustível">Troca de filtro de combustível</option>
+        <option value="Troca de correia dentada">Troca de correia dentada</option>
+        <option value="Troca de velas de ignição">Troca de velas de ignição</option>
+        <option value="Alinhamento de direção">Alinhamento de direção</option>
+        <option value="Balanceamento de rodas">Balanceamento de rodas</option>
+        <option value="Troca de pneus">Troca de pneus</option>
+        <option value="Troca de pastilhas de freio">Troca de pastilhas de freio</option>
+        <option value="Troca de fluido de freio">Troca de fluido de freio</option>
+      </select>
+      <select
+        name="qualidade"
+        value={formData.qualidade || ''}
+        onChange={handleInputChange}
+      >
+        <option value="">Qualidade dos produtos usados</option>
+        <option value="alta">Qualidade Alto nível</option>
+        <option value="media">Qualidade Intermediário</option>
+        <option value="baixa">Qualidade Custo-benefício</option>
+      </select>
+      <button onClick={() => handleSalvar(r.id)} className="botao-salvar">Salvar</button>
+    </div>
+    <small style={{ fontSize: '13px', color: '#ccc', display: 'block', marginTop: '10px' }}>
+      💡 Se a revisão foi feita com produtos de <strong>alto nível</strong>, o intervalo será estendido.<br />
+      Se foi com produtos <strong>mais simples</strong>, a próxima revisão será antecipada.
+    </small>
+  </td>
+</tr>
               )}
             </React.Fragment>
           ))}

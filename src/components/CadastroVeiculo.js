@@ -14,6 +14,7 @@ function CadastroVeiculo() {
     ano: '',
     km_atual: '',
     email_contato: '',
+    terreno: '',
     categoria: 'Carro',
   });
 
@@ -57,6 +58,13 @@ function CadastroVeiculo() {
         <input type="number" name="ano" placeholder="Ano" value={formData.ano} onChange={handleChange} required />
         <input type="number" name="km_atual" placeholder="Km Atual" value={formData.km_atual} onChange={handleChange} required />
         <input type="email" name="email_contato" placeholder="Email de Contato" value={formData.email_contato} onChange={handleChange} required />
+
+        <select name="terreno" value={formData.terreno} onChange={handleChange} required>
+          <option value="">Selecione o tipo de terreno</option>
+          <option value="bom">Bom – Utilizado apenas em cidades (asfalto)</option>
+          <option value="normal">Normal – Utilizado em rodovias comuns</option>
+          <option value="ruim">Ruim – Utilizado em estradas de terra</option>
+        </select>
         
         <select name="categoria" value={formData.categoria} onChange={handleChange}>
           <option value="Carro">Carro</option>
