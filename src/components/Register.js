@@ -8,14 +8,18 @@ function Register() {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
-
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  await register(nome, email, senha);
-  navigate('/dashboard'); // Vai direto pro dashboard após cadastro
-  };;
+    e.preventDefault();
+    const resultado = await register(nome, email, senha);
+
+    if (resultado.sucesso) {
+      navigate('/dashboard');
+    } else {
+      alert(resultado.mensagem);
+    }
+  };
 
   return (
     <div className="form-container">

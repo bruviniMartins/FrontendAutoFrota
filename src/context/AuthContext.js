@@ -7,21 +7,38 @@ export function AuthProvider({ children }) {
   const [token, setToken] = useState(localStorage.getItem('token') || '');
 
   async function login(email, senha) {
-    const response = await api.post('/auth/login', { email, senha }); // <-- corrigido
-    const tokenRecebido = response.data.token;
-    setToken(tokenRecebido);
-    localStorage.setItem('token', tokenRecebido);
+    try {
+      const response = await api.post('/auth/login', { email, senha });
+      const tokenRecebido = response.data.token;
+      setToken(tokenRecebido);
+      localStorage.setItem('token', tokenRecebido);
+      return { sucesso: true };
+    } catch (err) {
+      console.error('Erro no login:', err);
+      return { sucesso: false, mensagem: 'Email ou senha inválidos.' };
+    }
   }
 
   async function register(nome, email, senha) {
-    // Faz o cadastro
-    await api.post('/auth/register', { nome, email, senha });
-  
-    // Após sucesso, já faz login automático
-    const response = await api.post('/auth/login', { email, senha });
-    const tokenRecebido = response.data.token;
-    setToken(tokenRecebido);
-    localStorage.setItem('token', tokenRecebido);
+    try {
+      await api.post('/auth/register', { nome, email, senha });
+
+      // login automático após cadastro
+      const response = await api.post('/auth/login', { email, senha });
+      const tokenRecebido = response.data.token;
+      setToken(tokenRecebido);
+      localStorage.setItem('token', tokenRecebido);
+      return { sucesso: true };
+    } catch (err) {
+      console.error('Erro no cadastro:', err);
+      let mensagem = 'Erro ao cadastrar.';
+
+      if (err.response && err.response.status === 400) {
+        mensagem = err.response.data.mensagem || 'Email já cadastrado.';
+      }
+
+      return { sucesso: false, mensagem };
+    }
   }
 
   function logout() {

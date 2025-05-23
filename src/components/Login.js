@@ -1,18 +1,23 @@
 import React, { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom'; // <-- IMPORTANTE
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import './LoginRegister.css';
 
 function Login() {
   const { login } = useContext(AuthContext);
-  const navigate = useNavigate(); // <-- IMPORTANTE
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await login(email, senha);
-    navigate('/dashboard'); // <-- FORÇA NAVEGAÇÃO PARA DASHBOARD
+    const resultado = await login(email, senha);
+
+    if (resultado.sucesso) {
+      navigate('/dashboard');
+    } else {
+      alert(resultado.mensagem);
+    }
   };
 
   return (
